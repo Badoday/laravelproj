@@ -13,16 +13,22 @@ return new class extends Migration
     {
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
-             $table->string('course_name');
+            $table->string('title');
+            $table->text('description')->nullable();
+            $table->timestamps();
+        });
+        Schema::create('intructors', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('email')->unique();
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('courses');
+        Schema::dropIfExists('courses_and_instructors_tables');
     }
 };
